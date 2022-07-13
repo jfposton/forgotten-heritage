@@ -6,6 +6,19 @@ on:
     branches:
       - 'main'
 jobs:
+  AuditDependencies:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install dependencies
+        run: npm ci
+      - uses: oke-py/npm-audit-action@v2
+        with:
+          audit_level: moderate
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          create_pr_comments: true
+          dedupe_issues: true
   BuildSite:
     runs-on: ubuntu-latest
     steps:
@@ -15,6 +28,6 @@ jobs:
         with:
           node-version: 16.x
       - name: Install dependencies
-        run: npm install --prod --pure-lockfile
+        run: npm ci
       - name: Run Gatsby Build
         run: npx gatsby build
