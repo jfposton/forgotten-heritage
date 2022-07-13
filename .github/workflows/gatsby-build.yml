@@ -14,7 +14,7 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 16.x
-      - name: Github Action for Gatsby CLI
-        uses: jzweifel/gatsby-cli-github-action@v1.0.0
-        with:
-          gatsby-arg: build
+      - name: Install dependencies
+        run: npm install --prod --pure-lockfile
+      - name: Run Gatsby Build
+        run: npx gatsby build
