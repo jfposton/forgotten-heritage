@@ -1,0 +1,15 @@
+name: Gatsby Build
+on: 
+  pull_request
+  push:
+    branches:
+      - 'main'
+jobs:
+  BuildSite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Github Action for Gatsby CLI
+        uses: jzweifel/gatsby-cli-github-action@v1.0.0
+        with:
+          gatsby-arg: build
