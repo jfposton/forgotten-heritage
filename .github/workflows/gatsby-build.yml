@@ -10,6 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 16.x
       - name: Github Action for Gatsby CLI
         uses: jzweifel/gatsby-cli-github-action@v1.0.0
         with:
